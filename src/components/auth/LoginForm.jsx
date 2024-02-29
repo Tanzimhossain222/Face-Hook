@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axiosInstance from "../../api/axiosInstance";
 import { useAuth } from "../../hooks/useAuth";
 import Field from "../common/Field";
 
@@ -10,15 +12,43 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm();
   const navigate = useNavigate();
   const { setAuth } = useAuth();
 
-  const submitForm = (formData) => {
-    const data = { ...formData };
+  const submitForm = async (formData) => {
+    try {
+      const response = await axiosInstance.post("/auth/login", formData);
 
-    setAuth({ user: data.email });
-    navigate("/");
+      if (response.status !== 200) {
+        throw new Error("An error occurred");
+      }
+
+      const { token, user } = response.data;
+
+      if (token) {
+        const authToken = token.token;
+        const refreshToken = token.refreshToken;
+
+        setAuth({ user, authToken, refreshToken });
+        toast.success("Login successful", {
+          position: "top-right",
+          autoClose: 1000,
+        });
+
+        // Redirect to home page after 1 second
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      }
+    } catch (error) {
+      console.log(error);
+      setError("root.random", {
+        type: "random",
+        message: `User with email ${formData.email} does not exist or password is incorrect. Please try again.`,
+      });
+    }
   };
 
   return (
@@ -54,11 +84,6 @@ const LoginForm = () => {
                 value: 8,
                 message: "Password should be at least 8 characters long",
               },
-              pattern: {
-                value: /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*?&]).*$/,
-                message:
-                  "Password should contain at least one letter, one number, and one special character",
-              },
             })}
           />
           <button
@@ -69,6 +94,12 @@ const LoginForm = () => {
             {showPassword ? "Hide" : "Show"} password
           </button>
         </Field>
+
+        <p>
+          <span className="text-red-500 text-sm">
+            {errors?.root?.random?.message}
+          </span>
+        </p>
 
         <Field>
           <button
