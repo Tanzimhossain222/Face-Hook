@@ -4,7 +4,7 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 
 const login = async (email, password, db) => {
-  const user = db.get("users").find({ email }).value();
+  const user = db.get("users").find({ email: email.toLowerCase()  }).value();
 
   if (!user) {
     throw new Error("User not found");
@@ -44,7 +44,7 @@ const register = (reqBody, db) => {
     firstName,
     lastName,
     avatar: null,
-    email,
+    email: email.toLowerCase(),
   };
 
   db.get("users").push(newUser).write();

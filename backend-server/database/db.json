@@ -469,9 +469,9 @@
       "password": "$2b$08$t5Aar/0hgHTMdCeLtn3KhOlWDVIAHcFUTkRPeWASPhbYAea5kxKvW",
       "firstName": "Saad",
       "lastName": "Hasan",
-      "avatar": "uploads/avatar/avatar-1708849386635-121791126.png",
+      "avatar": "uploads/avatar/avatar-1709217842200-744511458.png",
       "email": "saadh392@mail.com",
-      "bio": "Saad is an excellent member of LWS who keeps himself updated with technology and stays relevant. He is a tech enthusiast and does not hesitate to help developers in need."
+      "bio": "Saad is an excellent member of LWS who keeps himself updated with technology and stays relevant. He is a tech enthusiast and does not hesitate to help developers in need....."
     },
     {
       "id": "1aeef0f0-77ba-456b-8b5b-d4145a9b5410",
@@ -514,6 +514,22 @@
       "avatar": "uploads/avatar/avatar-1708802845791-219561000.png",
       "email": "rambo@email.com",
       "bio": "I am Rambo!!!"
+    },
+    {
+      "id": "d2125937-fec9-4304-9c06-8575ad3e3ed3",
+      "password": "$2b$08$UKqPNnbbeXwJmvFSfS4aTO.LPd2LjemCK6cVOAfBK6XYhAWsp8mVO",
+      "firstName": "Tanzim",
+      "lastName": "Hossain",
+      "avatar": null,
+      "email": "tanzim01hossain2@gmail.com"
+    },
+    {
+      "id": "f32cc881-c25a-4ee6-8822-9f2a97b2558f",
+      "password": "$2b$08$gRr2jqTu60K1eNX7R.cvVeOuJqnk5zMN0cnFUdtu3qSMRL7.6cZg6",
+      "firstName": "Tanzim",
+      "lastName": "Hossain",
+      "avatar": null,
+      "email": "tanzim02hossain2@gmail.com"
     }
   ]
 }

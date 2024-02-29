@@ -4,13 +4,15 @@ import homeIcon from "../../assets/icons/home.svg";
 import notificationIcon from "../../assets/icons/notification.svg";
 import avatar1 from "../../assets/images/avatars/image1.png";
 import Logo from "../../assets/images/logo.svg";
-import Logout from "../auth/Logout";
 import { useAuth } from "../../hooks/useAuth";
-import useAxios from "../../api/useAxios";
+import Logout from "../auth/Logout";
+import useProfile from "../../hooks/useProfile";
 
 const Header = () => {
   const { auth } = useAuth();
-  const { user } = auth;
+  const { state } = useProfile();
+
+  const user = state?.user ?? auth?.user; 
 
   return (
     <nav className="sticky top-0 z-50 border-b border-[#3F3F3F] bg-[#1E1F24] py-4">
@@ -19,7 +21,7 @@ const Header = () => {
         <Link to="/">
           <img
             className="max-w-[100px] rounded-full lg:max-w-[130px]"
-            src={user?.avatar || Logo}
+            src={Logo}
             alt="Logo"
           />
         </Link>
@@ -39,8 +41,8 @@ const Header = () => {
               {user?.firstName + " " + user?.lastName}
             </span>
             <img
-              className="max-h-[32px] max-w-[32px] lg:max-h-[44px] lg:max-w-[44px]"
-              src={avatar1}
+              className="max-h-[32px] max-w-[32px] lg:max-h-[44px] lg:max-w-[44px] rounded-full"
+              src={user?.avatar ? `${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}` : avatar1}
               alt="Avatar"
             />
           </Link>
