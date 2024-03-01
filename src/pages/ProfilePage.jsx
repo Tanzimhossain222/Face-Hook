@@ -4,6 +4,7 @@ import useAxios from "../api/useAxios";
 import ProfileInfo from "../components/profile/ProfileInfo";
 import { useAuth } from "../hooks/useAuth";
 import useProfile from "../hooks/useProfile";
+import MyPosts from "../components/profile/MyPosts";
 
 const ProfilePage = () => {
   const { state, dispatch } = useProfile();
@@ -35,6 +36,7 @@ const ProfilePage = () => {
   return (
     <>
       <ProfileInfo />
+      <MyPosts />
     </>
   );
 };
