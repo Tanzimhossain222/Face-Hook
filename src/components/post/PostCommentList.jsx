@@ -17,7 +17,8 @@ const PostCommentList = ({ comments = [] }) => {
             />
             <div>
               <div className="flex gap-1 text-xs lg:text-sm">
-                <span>Tapas Adhikari: </span>
+              
+                <span>{comment?.author?.name}: </span>
                 <span>{comment?.comment}</span>
               </div>
             </div>
