@@ -34,7 +34,7 @@ const LoginForm = () => {
         setAuth({ user, authToken, refreshToken });
         toast.success("Login successful", {
           position: "top-right",
-          autoClose: 1000,
+          autoClose: 600,
         });
 
         // Redirect to home page after 1 second

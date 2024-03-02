@@ -3,7 +3,8 @@ import useProfile from "../../hooks/useProfile";
 import editIcon from "./../../assets/icons/edit.svg";
 import useAxios from "../../api/useAxios";
 import { actions } from "../../actions";
-// {{BASE_URL}}/profile/1aeef0f0-77ba-456b-8b5b-d4145a9b5410/avatar
+import avatar1 from "../../assets/images/avatars/image1.png";
+
 const ProfileImage = () => {
   const { state, dispatch } = useProfile();
   const { axiosInstance } = useAxios();
@@ -34,10 +35,12 @@ const ProfileImage = () => {
 
       if (response.status === 200) {
         dispatch({ type: actions.profile.IMAGE_UPLOADED, data: response.data });
-      } 
-
+      }
     } catch (err) {
-      dispatch({type: actions.profile.DATA_FETCHED_ERROR, error: err.message })
+      dispatch({
+        type: actions.profile.DATA_FETCHED_ERROR,
+        error: err.message,
+      });
     }
   };
 
@@ -45,7 +48,11 @@ const ProfileImage = () => {
     <div className="relative mb-8 max-h-[180px] max-w-[180px] rounded-full lg:mb-11 lg:max-h-[218px] lg:max-w-[218px]">
       <img
         className="max-w-full"
-        src={`${import.meta.env.VITE_SERVER_BASE_URL}/${state?.user?.avatar}`}
+        src={
+          state?.user?.avatar
+            ? `${import.meta.env.VITE_SERVER_BASE_URL}/${state?.user?.avatar}`
+            : avatar1
+        }
         alt={state?.user?.firstName}
       />
 

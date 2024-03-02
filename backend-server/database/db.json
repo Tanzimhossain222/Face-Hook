@@ -530,6 +530,14 @@
       "lastName": "Hossain",
       "avatar": null,
       "email": "tanzim02hossain2@gmail.com"
+    },
+    {
+      "id": "7b2f996e-f912-46a0-8426-5ce469c8c11d",
+      "password": "$2b$08$UI0xy9oLa.e7FOJaj8Pf9.4SVPGdrLQrAvTemxq3VX7jJNNS9yIsS",
+      "firstName": "Md Tanzim",
+      "lastName": "Hossain",
+      "avatar": null,
+      "email": "tanzimhossain2@gmail.com"
     }
   ]
 }
