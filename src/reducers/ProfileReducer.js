@@ -32,7 +32,7 @@ const profileReducer = (state = initialState, action) => {
                 error: action.error,
             }
         }
-        
+
         case actions.profile.USER_DATA_EDITED: {
             return {
                 ...state,
@@ -41,7 +41,7 @@ const profileReducer = (state = initialState, action) => {
             }
         }
 
-        case actions.profile.IMAGE_UPLOADED:{
+        case actions.profile.IMAGE_UPLOADED: {
             return {
                 ...state,
                 loading: false,
@@ -58,4 +58,4 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export  {profileReducer, initialState};
+export { initialState, profileReducer };

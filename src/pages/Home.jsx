@@ -1,11 +1,12 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import { actions } from "../actions";
 import useAxios from "../api/useAxios";
+import NewPost from "../components/post/NewPost";
 import PostList from "../components/post/PostList";
-import { initialState, postReducer } from "../reducers/PostReducer";
+import { usePost } from "../hooks/usePost";
 
 const Home = () => {
-  const [state, dispatch] = useReducer(postReducer, initialState);
+  const { state, dispatch } = usePost();
   const { axiosInstance } = useAxios();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Home = () => {
       }
     };
     fetchPost();
-  }, [axiosInstance]);
+  }, [axiosInstance, dispatch]);
 
   if (state?.loading) return <div>Loading...</div>;
   if (state?.error)
@@ -32,6 +33,7 @@ const Home = () => {
 
   return (
     <div>
+      <NewPost />
       <PostList posts={state?.posts} />
     </div>
   );

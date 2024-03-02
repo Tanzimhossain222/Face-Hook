@@ -1,23 +1,24 @@
-import React, { useState } from "react";
-import { useAvatar } from "../../hooks/useAvatar";
-import PostCommentList from "./PostCommentList";
 import PropTypes from "prop-types";
+import React, { useState } from "react";
 import useAxios from "../../api/useAxios";
 import { useAuth } from "../../hooks/useAuth";
+import PostCommentList from "./PostCommentList";
 
 const PostComments = ({ post }) => {
-  const {auth} = useAuth();
+  const { auth } = useAuth();
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState(post?.comments);
   const [comment, setComment] = useState("");
-  const {axiosInstance} = useAxios();
+  const { axiosInstance } = useAxios();
 
-  const addComment =async (e) => {
+  const addComment = async (e) => {
     const keyCode = e.keyCode;
 
     if (keyCode === 13) {
-      try{
-        const res = await axiosInstance.patch(`/posts/${post?.id}/comment`,{comment})
+      try {
+        const res = await axiosInstance.patch(`/posts/${post?.id}/comment`, {
+          comment,
+        });
 
         if (res.status === 200) {
           setComments([...comments, ...res.data.comments]);
@@ -27,8 +28,7 @@ const PostComments = ({ post }) => {
         console.log(error);
       }
     }
-  }
-
+  };
 
   return (
     <div>
@@ -48,7 +48,7 @@ const PostComments = ({ post }) => {
             id="post"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            onKeyDown={e => addComment(e)  }
+            onKeyDown={(e) => addComment(e)}
             placeholder="What's on your mind?"
           />
         </div>
@@ -59,7 +59,7 @@ const PostComments = ({ post }) => {
           className="text-gray-300 max-md:text-sm"
           onClick={() => setShowComments(!showComments)}
         >
-            {showComments ? "Hide" : "Show"} All Comments ▾
+          {showComments ? "Hide" : "Show"} All Comments ▾
         </button>
       </div>
 
@@ -69,13 +69,13 @@ const PostComments = ({ post }) => {
 };
 
 PostComments.propTypes = {
-    post: PropTypes.shape({
-        id: PropTypes.string,
-        content: PropTypes.string,
-        image: PropTypes.string,
-        comments: PropTypes.array,
-        createdAt: PropTypes.string,
-    })
-}
+  post: PropTypes.shape({
+    id: PropTypes.string,
+    content: PropTypes.string,
+    image: PropTypes.string,
+    comments: PropTypes.array,
+    createdAt: PropTypes.string,
+  }),
+};
 
 export default PostComments;
